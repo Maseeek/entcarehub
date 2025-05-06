@@ -3,11 +3,11 @@
 
 /* Container for the search form and consultant list */
 .container {
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 800px; /* Increased width */
+    width: 90%;
     padding: 30px;
     background-color: #1e1e2f; /* Darker container background */
     border: 1px solid #2a2a3d;
@@ -15,7 +15,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Styles for the search form */
 /* Styles for the search form */
 .select-group {
     display: flex;
@@ -47,13 +46,38 @@
 
 /* Styles for the consultant list */
 #consultant-list {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the cards */
     margin-top: 20px;
     padding: 15px;
     border: 1px solid #2a2a3d;
-    border-radius: 4px;
-    background-color: #1e1e2f;
+    border-radius: 8px;
+    background-color: #1e1e2f; /* Match the dark theme */
     color: #e0e0e0;
     width: 100%;
+}
+
+/* Updated styles for the consultant card */
+.consultant-card {
+    background-color: #2a2a3d; /* Match the dark theme */
+    border: 1px solid #547AA5; /* Accent color */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 280px; /* Adjust card width */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.consultant-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
+}
+
+.consultant-card h3 {
+    font-size: 20px;
 }
 
 /* Dropdown menu */
