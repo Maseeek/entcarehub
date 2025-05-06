@@ -1,0 +1,85 @@
+/* Dark mode body */
+
+
+/* Container for the search form and consultant list */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Increased width */
+    padding: 30px;
+    background-color: #1e1e2f; /* Darker container background */
+    border: 1px solid #2a2a3d;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles for the search form */
+/* Styles for the search form */
+.select-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Adjust spacing between elements */
+    margin: 20px 0;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+}
+
+.select-group select,
+.select-group input[type="date"] {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #547AA5; /* Accent color */
+    border-radius: 4px;
+    background-color: #2a2a3d; /* Dark input background */
+    color: #e0e0e0; /* Light text */
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.select-group select:focus,
+.select-group input[type="date"]:focus {
+    border-color: #547AA5;
+    background-color: #3a3a4d; /* Slightly lighter on focus */
+}
+
+/* Styles for the consultant list */
+#consultant-list {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #2a2a3d;
+    border-radius: 4px;
+    background-color: #1e1e2f;
+    color: #e0e0e0;
+    width: 100%;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    background-color: #2a2a3d;
+    border: 1px solid #547AA5;
+}
+
+.dropdown-item {
+    color: #e0e0e0;
+}
+
+.dropdown-item:hover {
+    background-color: #547AA5;
+    color: #ffffff;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .select-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
