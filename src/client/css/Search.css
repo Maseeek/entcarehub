@@ -121,56 +121,6 @@
     width: 100%;
 }
 
-.header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px;
-    background-color: transparent; /* Ensure it blends with the background */
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Space between logo and text */
-}
-
-.logo-container {
-    width: 60px; /* Adjust size as needed */
-    height: 60px;
-    background: url("../assets/gradient.jpg"); /* Use the same gradient as the text */
-    background-size: cover;
-    background-position: center;
-    -webkit-mask-image: url("../assets/enthublogo.png");
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-    mask-image: url("../assets/enthublogo.png");
-    mask-repeat: no-repeat;
-    mask-size: contain;
-}
-
-.text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.heading {
-    font-size: 40px;
-    margin: 0;
-    background-image: url("../assets/gradient.jpg");
-    background-size: cover;
-    background-position: bottom;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.subtitle {
-    font-size: 16px;
-    color: #e0e0e0; /* Light text color */
-    margin-top: 5px;
-}
 
 
 /* Responsive design */

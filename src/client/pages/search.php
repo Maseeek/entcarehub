@@ -78,7 +78,7 @@
             <img src="../assets/enthublogo.png" alt="Logo" class="logo" />
         </div>
         <div class="text-container">
-            <h1 class="heading">ENT Care Hub</h1>
+            <h1 class="heading">Find a Consultant</h1>
             <a class="subtitle">Expert Care, Advanced Solutions</a>
         </div>
     </div>
