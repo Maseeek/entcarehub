@@ -5,6 +5,7 @@ include "db-config.php";
 $speciality = trim($_GET["speciality"]);
 $clinic = trim($_GET["clinic"]);
 $date = trim($_GET["date"]);
+$sort = trim($_GET["sort"]); // Get the sort parameter
 $dayNumber = !empty($date) ? date('w', strtotime($date)) : null;
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -53,8 +54,18 @@ if (!empty($conditions)) {
 // Group by consultants.id to avoid duplicates
 $sql .= " GROUP BY consultants.id, consultants.name, specialities.speciality, clinics.name, clinics.latitude, clinics.longitude";
 
+// Apply sorting based on the sort parameter
+if ($sort === "Rating") {
+    $sql .= " ORDER BY average_score DESC";
+} elseif ($sort === "Total Recommendations") {
+    $sql .= " ORDER BY total_recommendations DESC";
+} elseif ($sort === "Distance") {
+    $sql .= " ORDER BY clinics.latitude, clinics.longitude"; // Example for distance sorting
+}
+
 $result = mysqli_query($conn, $sql);
 
 $allDataArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 echo json_encode($allDataArray);
+?>

@@ -57,7 +57,7 @@
         return (
             <div className="nav-container">
                 <div className="nav-title">
-                    <img src="../assets/ennthublogo.png" alt="Logo" height="50" className="logo"/>
+                    <img src="../assets/enthublogo.png" alt="Logo" height="50" className="logo"/>
                     <h2 className="title">entcarehub</h2>
                 </div>
                 <div className="nav-options">

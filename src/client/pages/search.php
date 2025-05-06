@@ -58,7 +58,7 @@
         return (
             <div className="nav-container">
                 <div className="nav-title">
-                    <img src="../assets/ennthublogo.png" alt="Logo" height="50" className="logo"/>
+                    <img src="../assets/enthublogo.png" alt="Logo" height="50" className="logo"/>
                     <h2 className="title">entcarehub</h2>
                 </div>
                 <div className="nav-options">
@@ -72,8 +72,19 @@
 
     ReactDOM.createRoot(document.getElementById('navbar-root')).render(<Navbar />);
 </script>
-
+<header class="header">
+    <div class="header-content">
+        <div class="logo-container">
+            <img src="../assets/enthublogo.png" alt="Logo" class="logo" />
+        </div>
+        <div class="text-container">
+            <h1 class="heading">ENT Care Hub</h1>
+            <a class="subtitle">Expert Care, Advanced Solutions</a>
+        </div>
+    </div>
+</header>
 <div class="container">
+
     <div id="consultant-search-root"></div>
 </div>
 
