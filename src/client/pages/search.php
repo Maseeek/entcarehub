@@ -73,54 +73,110 @@
     ReactDOM.createRoot(document.getElementById('navbar-root')).render(<Navbar />);
 </script>
 
-
-
-<div class="container" onload="getConsultants()">
-    <div class="select-group">
-        <div class="option-container">
-            <select id="speciality" onchange="getConsultants()">
-                <option value="">All Specialities</option>
-                <option>Otology</option>
-                <option>Rhinology</option>
-                <option>Laryngology</option>
-                <option>Paediatric ENT</option>
-                <option>Allergy</option>
-                <option>Head and Neck Surgery</option>
-            </select>
-        </div>
-        <div class="option-container">
-            <select id="location" onchange="getConsultants()">
-                <option value="">All Locations</option>
-                <option>Riverside ENT Clinic</option>
-                <option>Oakwood ENT Centre</option>
-                <option>Elmwood Medical Hub</option>
-                <option>Haven ENT Clinic</option>
-                <option>Meadowlands Health Point</option>
-                <option>Hillside ENT Centre</option>
-                <option>Valley View Clinic</option>
-                <option>Lakeside ENT Clinic</option>
-            </select>
-        </div>
-        <div class="option-container">
-            <input type="date" id="date" onchange="getConsultants()">
-            <select id="sort" onchange="getConsultants()">
-                <option value="">Sort by</option>
-                <option>Rating</option>
-                <option>Total Recommendations</option>
-                <option>Distance</option>
-            </select>
-        </div>
-    </div>
-    <div id="consultant-list"></div>
+<div class="container">
+    <div id="consultant-search-root"></div>
 </div>
 
+<script type="text/babel">
+    const { useState, useEffect } = React;
 
+    function ConsultantSearch() {
+        const [consultants, setConsultants] = useState([]);
+        const [searchQuery, setSearchQuery] = useState("");
+        const [filteredConsultants, setFilteredConsultants] = useState([]);
+        const [speciality, setSpeciality] = useState("");
+        const [location, setLocation] = useState("");
+        const [date, setDate] = useState("");
+        const [sort, setSort] = useState("");
 
-</body>
+        useEffect(() => {
+            // Fetch consultants when the component mounts
+            async function fetchConsultants() {
+                try {
+                    const params = new URLSearchParams({
+                        speciality,
+                        clinic: location,
+                        date,
+                        sort
+                    });
+                    const response = await fetch(`../../server/process-consultant-request.php?${params.toString()}`);
+                    const data = await response.json();
+                    setConsultants(data);
+                    setFilteredConsultants(data); // Initialize with all consultants
+                } catch (error) {
+                    console.error("Error fetching consultants:", error);
+                }
+            }
+            fetchConsultants();
+        }, [speciality, location, date, sort]);
+
+        useEffect(() => {
+            // Filter consultants based on the search query
+            const filtered = consultants.filter(consultant =>
+                consultant.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredConsultants(filtered);
+        }, [searchQuery, consultants]);
+
+        return (
+            <div>
+                <div className="select-group">
+                    <select value={speciality} onChange={(e) => setSpeciality(e.target.value)}>
+                        <option value="">All Specialities</option>
+                        <option>Otology</option>
+                        <option>Rhinology</option>
+                        <option>Laryngology</option>
+                        <option>Paediatric ENT</option>
+                        <option>Allergy</option>
+                        <option>Head and Neck Surgery</option>
+                    </select>
+                    <select value={location} onChange={(e) => setLocation(e.target.value)}>
+                        <option value="">All Locations</option>
+                        <option>Riverside ENT Clinic</option>
+                        <option>Oakwood ENT Centre</option>
+                        <option>Elmwood Medical Hub</option>
+                        <option>Haven ENT Clinic</option>
+                        <option>Meadowlands Health Point</option>
+                        <option>Hillside ENT Centre</option>
+                        <option>Valley View Clinic</option>
+                        <option>Lakeside ENT Clinic</option>
+                    </select>
+                    <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                        <option value="">Sort by</option>
+                        <option>Rating</option>
+                        <option>Total Recommendations</option>
+                        <option>Distance</option>
+                    </select>
+                </div>
+                <input
+                    type="text"
+                    placeholder="Search consultants by name..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                />
+                <div id="consultant-list">
+                    {filteredConsultants.map((consultant) => (
+                        <div key={consultant.id} className="consultant-card">
+                            <h3>{consultant.name}</h3>
+                            <p>Speciality: {consultant.speciality}</p>
+                            <p>Location: {consultant.clinic_name}</p>
+                            {consultant.distance && (
+                                <p>Distance: {consultant.distance.toFixed(2)} km</p>
+                            )}
+                            <button>Book Appointment</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    ReactDOM.createRoot(document.getElementById("consultant-search-root")).render(<ConsultantSearch />);
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../js/main.js"></script>
+</body>
 </html>
-
-
-
