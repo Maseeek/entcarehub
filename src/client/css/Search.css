@@ -3,7 +3,7 @@
 
 /* Container for the search form and consultant list */
 .container {
-    margin-top: 60px;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,6 +78,21 @@
 
 .consultant-card h3 {
     font-size: 20px;
+}
+
+.consultant-card button{
+    background-color: #547AA5; /* Accent color */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.consultant-card button:hover {
+    background-color: #3a3a4d; /* Slightly darker on hover */
+    transform: scale(1.05);
 }
 
 /* Dropdown menu */

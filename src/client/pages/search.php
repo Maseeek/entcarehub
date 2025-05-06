@@ -75,7 +75,7 @@
 
 
 
-<div class="container">
+<div class="container" onload="getConsultants()">
     <div class="select-group">
         <div class="option-container">
             <select id="speciality" onchange="getConsultants()">
