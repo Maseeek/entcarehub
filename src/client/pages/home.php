@@ -84,7 +84,7 @@
 </div>
 <div class="info-section">
     <h1 class="tag">Welcome to ENT Care Hub</h1>
-    <p class="subtitle">Expert Care, Advanced Solutions</p>
+<!--    <p class="subtitle">Expert Care, Advanced Solutions</p>-->
 </div>
 
 <!-- Additional Sections -->
