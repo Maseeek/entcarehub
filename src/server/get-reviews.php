@@ -7,12 +7,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "reviews.feedback, reviews.recommend, reviews.score
-        FROM reviews
-        JOIN consultants ON reviews.consultant_id = consultants.id
-        JOIN specialities ON consultants.speciality_id = specialities.id
-        JOIN clinics ON consultants.clinic_id = clinics.id
-        ORDER BY reviews.created_at DESC";
+$sql = "SELECT reviews.feedback, reviews.recommend, reviews.score, consultants.name AS consultant_name
+FROM reviews
+JOIN consultants ON reviews.consultant_id = consultants.id
+JOIN specialities ON consultants.speciality_id = specialities.id
+JOIN clinics ON consultants.clinic_id = clinics.id
+ORDER BY RAND()
+LIMIT 0, 25;";
 
 $result = mysqli_query($conn, $sql);
 

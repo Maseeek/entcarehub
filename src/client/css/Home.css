@@ -86,6 +86,7 @@ body {
     text-align: center;
     margin-top: 20px;
     border-radius: 10px;
+    margin-bottom:25px;
 }
 
 
@@ -127,4 +128,125 @@ body {
     background-color: #6f9acd; /* Lighter shade on hover */
     transform: translateY(-3px); /* Slight lift effect */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Review Carousel Styling */
+.review-container {
+    max-width: 100%;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.review-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    width: 320px;
+    scroll-snap-align: start;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.review-card:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.recommendation-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.recommendation-badge.recommends {
+    background-color: #e6f7e9;
+    color: #2f7e3a;
+}
+
+.recommendation-badge.neutral {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+.star-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.star {
+    font-size: 1.25rem;
+    margin: 0 2px;
+}
+
+.star.filled {
+    color: #f5c518;
+}
+
+.star.empty {
+    color: #d1d1d1;
+}
+
+.review-text {
+    color: #555;
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    height: 8rem;
+    overflow-y: auto;
+}
+
+.consultant-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.consultant-label {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.consultant-name {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.carousel-instructions {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #777;
 }

@@ -84,13 +84,150 @@
 </div>
 <div class="info-section">
     <h1 class="tag">Welcome to ENT Care Hub</h1>
-<!--    <p class="subtitle">Expert Care, Advanced Solutions</p>-->
+    <!--    <p class="subtitle">Expert Care, Advanced Solutions</p>-->
 </div>
 
 <!-- Additional Sections -->
 <div class="about-section">
-<h1 class="tagline">Driven by data. Powered by people.</h1>
+    <h1 class="tagline">Driven by data. Powered by people.</h1>
     <button class="find-consultant-btn" onclick="window.location.href='search.php'">Find a consultant</button>
 </div>
+<div id="reviews"></div>
+<script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const ReviewCarousel = () => {
+        const [reviews, setReviews] = useState([]);
+        const [isPaused, setIsPaused] = useState(false);
+        const carouselRef = useRef(null);
+
+        useEffect(() => {
+
+            // Try to fetch actual reviews
+            async function fetchReviews() {
+                try {
+                    const response = await fetch('../../server/get-reviews.php');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.length > 0) {
+                            setReviews(data);
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching reviews:", error);
+                }
+            }
+
+            fetchReviews();
+        }, []);
+
+        // Set up automatic scrolling
+        useEffect(() => {
+            const scrollContainer = carouselRef.current;
+            if (!scrollContainer) return;
+
+            let scrollInterval;
+
+            // Function to handle automatic scrolling
+            const startScrolling = () => {
+                scrollInterval = setInterval(() => {
+                    if (scrollContainer && !isPaused) {
+                        // Get total width of all items
+                        const totalWidth = scrollContainer.scrollWidth;
+                        const containerWidth = scrollContainer.clientWidth;
+
+                        if (scrollContainer.scrollLeft + containerWidth >= totalWidth - 100) {
+                            // Reset to start when reaching the end
+                            scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            // Scroll by a card width
+                            scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+                        }
+                    }
+                }, 3000);
+            };
+
+            startScrolling();
+
+            // Clean up interval on unmount
+            return () => {
+                if (scrollInterval) {
+                    clearInterval(scrollInterval);
+                }
+            };
+        }, [isPaused]);
+
+        // Render stars based on score
+        const renderStars = (score) => {
+            return Array(5).fill(0).map((_, i) => (
+                <span key={i} className={`star ${i < score ? 'filled' : 'empty'}`}>★</span>
+            ));
+        };
+
+        // Render recommendation badge
+        const renderRecommendBadge = (recommend) => {
+            return (
+                <div className={`recommendation-badge ${recommend ? 'recommends' : 'neutral'}`}>
+                    {recommend ? 'Recommends' : 'Neutral'}
+                </div>
+            );
+        };
+
+        return (
+            <div className="review-container">
+                <h2 className="review-heading">Here's what our clients say...</h2>
+
+                <div
+                    className="carousel-container"
+                    ref={carouselRef}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    {reviews.map((review) => (
+                        <div key={review.id} className="review-card">
+                            {renderRecommendBadge(review.recommend)}
+
+                            <div className="star-container">
+                                {renderStars(review.score)}
+                            </div>
+
+                            <p className="review-text">"{review.feedback}"</p>
+
+                            <div className="consultant-info">
+                                <p className="consultant-label">Consultant:</p>
+                                <p className="consultant-name">{review.consultant_name}</p>
+                            </div>
+                        </div>
+                    ))}
+
+                    {/* Duplicate first few cards to create the illusion of infinite scrolling */}
+                    {reviews.slice(0, 3).map((review) => (
+                        <div key={`duplicate-${review.id}`} className="review-card">
+                            {renderRecommendBadge(review.recommend)}
+
+                            <div className="star-container">
+                                {renderStars(review.score)}
+                            </div>
+
+                            <p className="review-text">"{review.feedback}"</p>
+
+                            <div className="consultant-info">
+                                <p className="consultant-label">Consultant:</p>
+                                <p className="consultant-name">{review.consultant_name}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="carousel-instructions">
+                    <p>Hover over cards to pause</p>
+                </div>
+            </div>
+        );
+    };
+
+    ReactDOM.createRoot(document.getElementById("reviews")).render(<ReviewCarousel />);
+</script>
+
 </body>
 </html>
