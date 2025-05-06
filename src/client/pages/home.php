@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>React Navbar in PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENT Care Hub</title>
     <link rel="stylesheet" href="../css/Navbar.css">
     <link rel="stylesheet" href="../css/Main.css">
+    <link rel="stylesheet" href="../css/Home.css">
 </head>
 <body>
+<!-- Navbar -->
 <div id="navbar-root"></div>
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -72,8 +75,22 @@
     ReactDOM.createRoot(document.getElementById('navbar-root')).render(<Navbar />);
 </script>
 
+<!-- Landing Page -->
+<div class="video-container">
+    <video autoplay loop muted class="background-video">
+        <source src="../assets/hospitalbroll.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div class="info-section">
+    <h1 class="tag">Welcome to ENT Care Hub</h1>
+    <p class="subtitle">Expert Care, Advanced Solutions</p>
+</div>
 
-<!--LANDING PAGE-->
-
+<!-- Additional Sections -->
+<div class="about-section">
+<h1 class="tagline">Driven by data. Powered by people.</h1>
+    <button class="find-consultant-btn" onclick="window.location.href='search.php'">Find a consultant</button>
+</div>
 </body>
 </html>
