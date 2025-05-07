@@ -247,6 +247,10 @@ function displayConsultants(consultants) {
         location.textContent = "Location: " + consultant.clinic_name;
         card.appendChild(location);
 
+        const rating = document.createElement("p");
+        rating.classList.add("rating");
+        rating.textContent =consultant.average_score.substring(0,3) + "⭐";
+
         // Add distance if available
         if (consultant.distance !== undefined) {
             const distance = document.createElement("p");

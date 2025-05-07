@@ -66,7 +66,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     width: 280px; /* Adjust card width */
-    padding: 20px;
+    padding: 35px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -121,6 +121,24 @@
     width: 100%;
 }
 
+/* Make ratings always visible */
+.rating.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+.rating {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f8f8f8;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* Remove any opacity, visibility, or display properties that might be hiding it */
+}
 
 
 /* Responsive design */

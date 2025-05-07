@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="../css/Navbar.css"
+<link rel="stylesheet" href="../css/Navbar.css">
 <div id="navbar-root"></div>
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    const { useState } = React;
+    const { useState, useEffect, useRef } = React;
 
     function HomeButton() {
         return (
@@ -38,21 +38,39 @@
                 <a href="search.php" className="dropdown-item">🔍 Search</a>
                 <a href="statistics.php" className="dropdown-item">📊 Statistics</a>
                 <a href="settings.php" className="dropdown-item">⚙️ Settings</a>
+                <a href="logout.php" className="dropdown-item">🚪 Logout</a>
             </div>
         );
     }
 
     function Navbar() {
         const [isDropdownVisible, setDropdownVisible] = useState(false);
-        const toggleDropdown = () => setDropdownVisible(!isDropdownVisible);
+        const dropdownRef = useRef(null);
+
+        const toggleDropdown = () => setDropdownVisible((prev) => !prev);
+
+        useEffect(() => {
+            const handleClickOutside = (event) => {
+                console.log("Document clicked"); // Debugging if the event listener is firing
+                if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                    console.log("Clicked outside dropdown"); // Debugging if the click is outside
+                    setDropdownVisible(false);
+                }
+            };
+
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => {
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }, []);
 
         return (
             <div className="nav-container">
                 <div className="nav-title">
-                    <img src="../assets/enthublogo.png" alt="Logo" height="50" className="logo"/>
+                    <img src="../assets/enthublogo.png" alt="Logo" height="50" className="logo" />
                     <h2 className="title">entcarehub</h2>
                 </div>
-                <div className="nav-options">
+                <div className="nav-options" ref={dropdownRef}>
                     <HomeButton />
                     <ProfileButton onClick={toggleDropdown} />
                     <DropdownMenu isVisible={isDropdownVisible} />

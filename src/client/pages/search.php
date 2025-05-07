@@ -173,6 +173,7 @@
                             <h3>{consultant.name}</h3>
                             <p>Speciality: {consultant.speciality}</p>
                             <p>Location: {consultant.clinic_name}</p>
+                            <p className="rating">{consultant.average_score.substring(0,3)}⭐</p>
                             {consultant.distance && (
                                 <p>Distance: {consultant.distance.toFixed(2)} km</p>
                             )}
