@@ -277,3 +277,4 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call getConsultants() immediately after the page loads
     getConsultants();
 });
+

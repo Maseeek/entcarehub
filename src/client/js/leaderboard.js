@@ -27,6 +27,12 @@ function displayRatings(consultants) {
         const name = document.createElement("div");
         name.classList.add("name");
         name.textContent = consultant.name;
+        name.setAttribute("data-id", consultant.id); // Add consultant ID as data attribute
+        name.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
+        // Add click event listener directly to each name
+        name.addEventListener("click", () => {
+            showConsultantProfile(consultant.id);
+        });
         row.appendChild(name);
 
         // Score column
@@ -71,6 +77,12 @@ function displayRecommendations(consultants) {
         const name = document.createElement("div");
         name.classList.add("name");
         name.textContent = consultant.name;
+        name.setAttribute("data-id", consultant.id); // Add consultant ID as data attribute
+        name.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
+        // Add click event listener directly to each name
+        name.addEventListener("click", () => {
+            showConsultantProfile(consultant.id);
+        });
         row.appendChild(name);
 
         const recommendations = document.createElement("div");
@@ -92,11 +104,86 @@ function displayRecommendations(consultants) {
         }
         row.appendChild(score);
 
-
-
         leaderboard.appendChild(row);
     });
 }
+
+async function showConsultantProfile(id) {
+    let idEncoded = encodeURIComponent(id);
+    const response = await fetch(`../../server/get-consultant-profile.php?id=${idEncoded}`);
+    const consultants = await response.json();
+
+    if (consultants.length > 0) {
+        const consultant = consultants[0]; // Get the first result
+        displayConsultantProfile(consultant);
+    } else {
+        console.error("No consultant found with ID:", id);
+    }
+}
+
+function displayConsultantProfile(consultant) {
+    // Create or get the profile container
+    const profileContainer = document.getElementById('consultant-profile') || createProfileContainer();
+
+    // Clear previous content
+    profileContainer.innerHTML = '';
+
+    // Create profile content
+    const content = `
+        <div class="profile-header">
+            <h2>${consultant.name}</h2>
+            <p class="consultation-fee">Consultation Fee: $${consultant.consultation_fee}</p>
+        </div>
+        <div class="profile-details">
+            <p><strong>Clinic:</strong> ${consultant.clinic_name}</p>
+            <p><strong>Location:</strong> Lat: ${consultant.latitude}, Lng: ${consultant.longitude}</p>
+        </div>
+        <div class="profile-actions">
+            <button class="book-btn">Book Appointment</button>
+            <button class="close-btn">Close</button>
+        </div>
+    `;
+
+    profileContainer.innerHTML = content;
+
+    // Show the profile container
+    profileContainer.style.display = 'block';
+
+    // Add event listener to close button
+    const closeBtn = profileContainer.querySelector('.close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            profileContainer.style.display = 'none';
+        });
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!profileContainer.contains(event.target) && event.target !== profileContainer) {
+            profileContainer.style.display = 'none';
+        }
+    });
+}
+
+function createProfileContainer() {
+    const container = document.createElement('div');
+    container.id = 'consultant-profile';
+    container.className = 'consultant-profile-modal';
+    document.body.appendChild(container);
+
+    // Add a link to the CSS file if not already added
+    if (!document.querySelector('link[href*="consultant-profile.css"]')) {
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = '../css/consultant-profile.css';
+        document.head.appendChild(cssLink);
+    }
+
+    return container;
+}
+
+
+
 
 // Fetch and display both leaderboards on page load
 leaderboardByRating();
