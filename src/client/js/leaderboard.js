@@ -33,6 +33,15 @@ function displayRatings(consultants) {
         const score = document.createElement("div");
         score.classList.add("score");
         score.textContent = consultant.average_score.toString().substring(0, 3) + "⭐";
+        if(consultant.average_score > 4.0){
+            score.style.color = "green";
+        }
+        else if(consultant.average_score >= 3){
+            score.style.color = "orange";
+        }
+        else{
+            score.style.color = "red";
+        }
         row.appendChild(score);
 
         // Append the row to the leaderboard
@@ -72,6 +81,15 @@ function displayRecommendations(consultants) {
         const score = document.createElement("div");
         score.classList.add("score");
         score.textContent = `${consultant.recommendation_percentage.toString().substring(0, 5)}%`;
+        if(consultant.recommendation_percentage > 70){
+            score.style.color = "green";
+        }
+        else if(consultant.recommendation_percentage >= 50){
+            score.style.color = "orange";
+        }
+        else{
+            score.style.color = "red";
+        }
         row.appendChild(score);
 
 

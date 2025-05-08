@@ -17,7 +17,7 @@ $sql = "SELECT consultants.id,
         LEFT JOIN reviews ON consultants.id = reviews.consultant_id
         GROUP BY consultants.id, consultants.name
         ORDER BY average_score DESC
-        LIMIT 10";
+        LIMIT 100";
 
 $result = mysqli_query($conn, $sql);
 
