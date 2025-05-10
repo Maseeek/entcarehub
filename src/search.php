@@ -103,19 +103,47 @@
         const [sort, setSort] = useState("");
 
         useEffect(() => {
-            // Fetch consultants when the component mounts
+            // Fetch consultants when the component mounts or when filters/sort change
             async function fetchConsultants() {
                 try {
+                    // Pass the sort option correctly in the params
                     const params = new URLSearchParams({
                         speciality,
                         clinic: location,
                         date,
-                        sort
+                        sort // This is the key parameter for sorting
                     });
+
                     const response = await fetch(`process-consultant-request.php?${params.toString()}`);
                     const data = await response.json();
-                    setConsultants(data);
-                    setFilteredConsultants(data); // Initialize with all consultants
+
+                    // Handle special case for distance sorting which needs client-side calculation
+                    if (sort === "Distance" && navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                const userPos = [position.coords.latitude, position.coords.longitude];
+                                const sortedData = [...data];
+
+                                sortedData.forEach(consultant => {
+                                    const consultantPos = [consultant.latitude, consultant.longitude];
+                                    consultant.distance = calculateDistance(userPos, consultantPos);
+                                });
+
+                                sortedData.sort((a, b) => a.distance - b.distance);
+                                setConsultants(sortedData);
+                                setFilteredConsultants(sortedData);
+                            },
+                            (error) => {
+                                console.error("Error getting location:", error);
+                                setConsultants(data);
+                                setFilteredConsultants(data);
+                            }
+                        );
+                    } else {
+                        // For all other sorting options, use the data sorted by SQL
+                        setConsultants(data);
+                        setFilteredConsultants(data);
+                    }
                 } catch (error) {
                     console.error("Error fetching consultants:", error);
                 }
@@ -160,6 +188,7 @@
                         <option>Rating</option>
                         <option>Total Recommendations</option>
                         <option>Distance</option>
+                        <option value="Lowest Price">Lowest Price</option>
                     </select>
                     <button className="button1" onClick={() => window.location.href = 'statistics.php'}>Who should i choose?</button>
                 </div>
@@ -173,13 +202,35 @@
                 <div id="consultant-list">
                     {filteredConsultants.map((consultant) => (
                         <div key={consultant.id} className="consultant-card">
-                            <h3>{consultant.name}</h3>
-                            <p>Speciality: {consultant.speciality}</p>
-                            <p>Location: {consultant.clinic_name}</p>
-                            <p className="rating">{consultant.average_score.substring(0,3)}⭐</p>
-                            <p>Consultation fee: {consultant.consultation_fee}</p>
-                            <button>Book Appointment</button>
-                            <button onClick={() => showConsultantProfile(consultant.id)}>See more</button>
+                            <div className="card-header">
+                                <h3 onClick={() => showConsultantProfile(consultant.id)}
+                                    style={{cursor: "pointer"}}>
+                                    {consultant.name}
+                                </h3>
+                                <span className="speciality-tag">{consultant.speciality}</span>
+                            </div>
+                            <div className="card-stats">
+                                <p className="location">{consultant.clinic_name}</p>
+
+                                {/* Always display the rating with special styling */}
+                                <p className="rating">{consultant.average_score.substring(0,3)}⭐</p>
+
+                                {/* Always display the consultation fee */}
+                                <p className="consultation-fee"><strong>${consultant.consultation_fee}</strong></p>
+
+                                {/* Show recommendations when sorting by recommendations */}
+                                {sort === "Total Recommendations" && (
+                                    <p className="recommendations"><strong>Recommendations: {consultant.total_recommendations}</strong></p>
+                                )}
+
+                                {/* Show distance with special styling when available */}
+                                {consultant.distance && (
+                                    <p className={sort === "Distance" ? "distance-highlight" : "distance"}>
+                                        <strong>Distance: {consultant.distance.toFixed(2)} km</strong>
+                                    </p>
+                                )}
+                            </div>
+                            <button onClick={() => showConsultantProfile(consultant.id)}>View Profile</button>
                         </div>
                     ))}
                 </div>

@@ -171,3 +171,116 @@ button{
         gap: 15px;
     }
 }
+
+.card-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.recommendations {
+    color: #547AA5;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: rgba(84, 122, 165, 0.1);
+    display: inline-block;
+}
+.distance-highlight {
+    color: #547AA5;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: rgba(84, 122, 165, 0.1);
+    display: inline-block;
+}
+
+.distance {
+    display: inline-block;
+}
+
+/* Position both speciality tag and rating in the same place */
+.speciality-tag {
+    position: absolute;
+    top: -10px;  /* Moved up to avoid overlapping the name */
+    right: -15px; /* Keep aligned to the right */
+    background-color: #547AA5;
+    color: white;
+    font-size: 12px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f8f8f8;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2; /* Higher than speciality tag */
+}
+
+/* On hover, hide speciality and show rating */
+.consultant-card:hover .speciality-tag {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.consultant-card:hover .rating {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Card header adjustment */
+.card-header {
+    position: relative;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-top: 40px;
+
+    padding:20px;
+    border-bottom: 1px solid rgba(84, 122, 165, 0.3);
+}
+
+/* Reposition for better layout */
+.consultant-card {
+    position: relative;
+    padding-top: 30px; /* Reduced since we moved the speciality tag */
+}
+
+.consultant-card h3 {
+    margin: 0 auto;
+    marigin-top:100px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.location{
+    color: #d9dadc;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+

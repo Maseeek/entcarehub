@@ -62,6 +62,9 @@ if ($sort === "Rating") {
 } elseif ($sort === "Distance") {
     $sql .= " ORDER BY clinics.latitude, clinics.longitude"; // Example for distance sorting
 }
+else if ($sort === "Lowest Price") {
+    $sql .= " ORDER BY consultants.consultation_fee ASC";
+}
 
 $result = mysqli_query($conn, $sql);
 
