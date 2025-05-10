@@ -128,7 +128,10 @@ function displayConsultantProfile(consultant) {
     // Clear previous content
     profileContainer.innerHTML = '';
 
-    // Create profile content
+    // Format the map URL with actual latitude and longitude
+    const mapSrc = `https://www.google.com/maps?q=${consultant.latitude},${consultant.longitude}&z=15&output=embed`;
+
+    // Create profile content with improved map styling
     const content = `
         <div class="profile-header">
             <h2>${consultant.name}</h2>
@@ -136,7 +139,14 @@ function displayConsultantProfile(consultant) {
         </div>
         <div class="profile-details">
             <p><strong>Clinic:</strong> ${consultant.clinic_name}</p>
-            <p><strong>Location:</strong> Lat: ${consultant.latitude}, Lng: ${consultant.longitude}</p>
+            <div class="map-container">
+                <iframe
+                    class="location-map"
+                    loading="lazy"
+                    allowfullscreen
+                    src="${mapSrc}">
+                </iframe>
+            </div>
         </div>
         <div class="profile-actions">
             <button class="book-btn">Book Appointment</button>

@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="Search.css">
     <link rel="stylesheet" href="Navbar.css">
     <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="ConsultantProfile.css">
+    <script src="consultantProfile.js"></script>
 </head>
 <body>
 <div id="navbar-root"></div>
@@ -158,7 +160,7 @@
                         <option>Total Recommendations</option>
                         <option>Distance</option>
                     </select>
-                    <button onClick={() => window.location.href = 'statistics.php'}>Who should i choose?</button>
+                    <button className="button1" onClick={() => window.location.href = 'statistics.php'}>Who should i choose?</button>
                 </div>
                 <input
                     type="text"
@@ -176,6 +178,7 @@
                             <p className="rating">{consultant.average_score.substring(0,3)}⭐</p>
                             <p>Consultation fee: {consultant.consultation_fee}</p>
                             <button>Book Appointment</button>
+                            <button onClick={() => showConsultantProfile(consultant.id)}>See more</button>
                         </div>
                     ))}
                 </div>

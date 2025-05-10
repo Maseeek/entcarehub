@@ -174,11 +174,11 @@ function calculateDistance(pos1, pos2) {
 
 // LETS DO SOME FETCHING
 async function getConsultants() {
-    const specialitySelect = document.getElementById("speciality");
+    // const specialitySelect = document.getElementById("speciality");
     const locationSelect = document.getElementById("location");
     const dateInput = document.getElementById("date");
 
-    const speciality = specialitySelect.value === "Select a speciality" ? "" : specialitySelect.value;
+    const speciality = specialitySelect.value === "All Specialities" ? "" : specialitySelect.value;
     const location = locationSelect.value === "Any" ? "" : locationSelect.value;
     const date = dateInput.value;
 
@@ -232,9 +232,13 @@ function displayConsultants(consultants) {
         const card = document.createElement("div");
         card.classList.add("consultant-card");
 
-        // Add consultant name
+        // Add consultant name (make it clickable)
         const name = document.createElement("h3");
         name.textContent = consultant.name;
+        name.style.cursor = "pointer";
+        name.addEventListener("click", () => {
+            window.consultantProfile.show(consultant.id);
+        });
         card.appendChild(name);
 
         // Add consultant speciality
@@ -249,7 +253,8 @@ function displayConsultants(consultants) {
 
         const rating = document.createElement("p");
         rating.classList.add("rating");
-        rating.textContent =consultant.average_score.substring(0,3) + "⭐";
+        rating.textContent = consultant.average_score.substring(0,3) + "⭐";
+        card.appendChild(rating);
 
         // Add distance if available
         if (consultant.distance !== undefined) {
@@ -261,11 +266,23 @@ function displayConsultants(consultants) {
         // Add a booking button
         const book = document.createElement("button");
         book.textContent = "Book Appointment";
+        book.addEventListener("click", () => {
+            window.consultantProfile.show(consultant.id);
+        });
         card.appendChild(book);
 
         // Append the card to the consultant list
         consultantList.appendChild(card);
     });
+}
+
+
+function createProfileContainer() {
+    const container = document.createElement('div');
+    container.id = 'consultant-profile';
+    container.className = 'consultant-profile-modal';
+    document.body.appendChild(container);
+    return container;
 }
 
 function isConsultantAvailable(consultant) {
@@ -275,6 +292,6 @@ function isConsultantAvailable(consultant) {
 
 document.addEventListener('DOMContentLoaded', function () {
     // Call getConsultants() immediately after the page loads
-    getConsultants();
+    // getConsultants();
 });
 

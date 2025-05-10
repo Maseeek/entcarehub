@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     width: 90%;
-    padding: 30px;
+    padding: 50px;
     background-color: #1e1e2f; /* Darker container background */
     border: 1px solid #2a2a3d;
     border-radius: 8px;
@@ -72,8 +72,7 @@
 }
 
 .consultant-card:hover {
-    transform: scale(1.05);
-    transform: translateY(-10px);
+    transform: scale(1.05) translateY(-10px);
     box-shadow: 0 6px 10px rgba(41, 95, 211, 0.7);
 }
 
@@ -119,6 +118,7 @@
     padding: 10px 15px;
     font-size: 14px;
     width: 100%;
+
 }
 
 /* Make ratings always visible */
@@ -140,9 +140,8 @@
     /* Remove any opacity, visibility, or display properties that might be hiding it */
 }
 
-button{
+.button1{
     background-color: #547AA5; /* Accent color */
-    padding:5px;
     color: #ffffff;
     border: none;
     padding: 10px 15px;
@@ -151,9 +150,13 @@ button{
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+.button1:hover {
     background-color: #3a3a4d; /* Slightly darker on hover */
     transform: scale(1.05);
+}
+
+button{
+    margin:5px;
 }
 
 
