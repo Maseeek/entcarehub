@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="../css/Main.css">
-    <link rel="stylesheet" href="../css/Navbar.css">
-    <link rel="stylesheet" href="../css/Statistics.css">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="Navbar.css">
+    <link rel="stylesheet" href="Statistics.css">
 </head>
 <body>
 <div id="navbar-root"></div>
@@ -18,7 +18,7 @@
 
     function HomeButton() {
         return (
-            <a href="home.php">
+            <a href="enthub.php">
                 <button className="home-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -58,7 +58,7 @@
         return (
             <div className="nav-container">
                 <div className="nav-title">
-                    <img src="../assets/enthublogo.png" alt="Logo" height="50" className="logo"/>
+                    <img src="enthublogo.png" alt="Logo" height="50" className="logo"/>
                     <h2 className="title">entcarehub</h2>
                 </div>
                 <div className="nav-options">
@@ -76,7 +76,7 @@
 <header class="header">
     <div class="header-content">
         <div class="logo-container">
-            <img src="../assets/enthublogo.png" alt="Logo" class="logo" />
+            <img src="enthublogo.png" alt="Logo" class="logo" />
         </div>
         <div class="text-container">
             <h1 class="heading">Leaderboard</h1>
@@ -143,7 +143,7 @@
     </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/leaderboard.js"></script>
-<script src="../js/main.js"></script>
+<script src="leaderboard.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

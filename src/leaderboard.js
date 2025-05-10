@@ -1,5 +1,5 @@
 async function leaderboardByRating() {
-    const response = await fetch(`../../server/process-leaderboard-request.php`);
+    const response = await fetch(`process-leaderboard-request.php`);
     const consultants = await response.json();
     displayRatings(consultants);
 }
@@ -55,7 +55,7 @@ function displayRatings(consultants) {
     });
 }
 async function leaderboardByRecommendation() {
-    const response = await fetch(`../../server/process-leaderboard1-request.php`);
+    const response = await fetch(`process-leaderboard1-request.php`);
     const consultants = await response.json();
     displayRecommendations(consultants);
 }
@@ -110,7 +110,7 @@ function displayRecommendations(consultants) {
 
 async function showConsultantProfile(id) {
     let idEncoded = encodeURIComponent(id);
-    const response = await fetch(`../../server/get-consultant-profile.php?id=${idEncoded}`);
+    const response = await fetch(`get-consultant-profile.php?id=${idEncoded}`);
     const consultants = await response.json();
 
     if (consultants.length > 0) {
@@ -170,15 +170,6 @@ function createProfileContainer() {
     container.id = 'consultant-profile';
     container.className = 'consultant-profile-modal';
     document.body.appendChild(container);
-
-    // Add a link to the CSS file if not already added
-    if (!document.querySelector('link[href*="consultant-profile.css"]')) {
-        const cssLink = document.createElement('link');
-        cssLink.rel = 'stylesheet';
-        cssLink.href = '../css/consultant-profile.css';
-        document.head.appendChild(cssLink);
-    }
-
     return container;
 }
 

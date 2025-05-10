@@ -58,7 +58,7 @@ body {
     font-size: 4rem;
     font-weight: bold;
     padding:10px;
-    background-image: url("../assets/gradient.jpg");
+    background-image: url("gradient.jpg");
     background-size:  cover;
     background-position: center center;
     background-clip: text;

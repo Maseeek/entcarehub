@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENT Care Hub</title>
-    <link rel="stylesheet" href="../css/Navbar.css">
-    <link rel="stylesheet" href="../css/Main.css">
-    <link rel="stylesheet" href="../css/Home.css">
+    <link rel="stylesheet" href="Navbar.css">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="Home.css">
 </head>
 <body>
 <!-- Navbar -->
@@ -19,7 +19,7 @@
 
     function HomeButton() {
         return (
-            <a href="home.php">
+            <a href="enthub.php">
                 <button className="home-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -59,7 +59,7 @@
         return (
             <div className="nav-container">
                 <div className="nav-title">
-                    <img src="../assets/enthublogo.png" alt="Logo" height="50" className="logo"/>
+                    <img src="enthublogo.png" alt="Logo" height="50" className="logo"/>
                     <h2 className="title">entcarehub</h2>
                 </div>
                 <div className="nav-options">
@@ -77,7 +77,7 @@
 <!-- Landing Page -->
 <div class="video-container">
     <video autoplay loop muted class="background-video">
-        <source src="../assets/broll.webm" type="video/mp4">
+        <source src="broll.webm" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 </div>
@@ -105,7 +105,7 @@
             // Try to fetch actual reviews
             async function fetchReviews() {
                 try {
-                    const response = await fetch('../../server/get-reviews.php');
+                    const response = await fetch('get-reviews.php');
                     if (response.ok) {
                         const data = await response.json();
                         if (data.length > 0) {

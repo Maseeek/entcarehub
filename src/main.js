@@ -186,7 +186,7 @@ async function getConsultants() {
 
     try {
         // Fetch consultants from the server ".
-        const response = await fetch(`../../server/process-consultant-request.php?${queryString}`);
+        const response = await fetch(`process-consultant-request.php?${queryString}`);
         const consultants = await response.json();
 
         // Process consultants (e.g., sort by distance)

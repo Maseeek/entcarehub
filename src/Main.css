@@ -9,7 +9,7 @@ body {
     font-family: "Cal Sans",Arial, sans-serif;
     background-color: #292828; /* Dark background */
     color: #e0e0e0; /* Light text */
-    background-image: url("../assets/background.png");
+    background-image: url("background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,13 +33,13 @@ body {
 .logo-container {
     width: 60px; /* Adjust size as needed */
     height: 60px;
-    background: url("../assets/gradient.jpg"); /* Use the same gradient as the text */
+    background: url("gradient.jpg"); /* Use the same gradient as the text */
     background-size: cover;
     background-position: center;
-    -webkit-mask-image: url("../assets/enthublogo.png");
+    -webkit-mask-image: url("enthublogo.png");
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-size: contain;
-    mask-image: url("../assets/enthublogo.png");
+    mask-image: url("enthublogo.png");
     mask-repeat: no-repeat;
     mask-size: contain;
 }
@@ -53,7 +53,7 @@ body {
 .heading {
     font-size: 40px;
     margin: 0;
-    background-image: url("../assets/gradient.jpg");
+    background-image: url("gradient.jpg");
     background-size: cover;
     background-position: bottom;
     background-clip: text;
