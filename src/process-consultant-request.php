@@ -14,7 +14,7 @@ if (!$conn) {
 }
 
 // Base query
-$sql = "SELECT consultants.id, consultants.name, specialities.speciality, clinics.name AS clinic_name, clinics.latitude, clinics.longitude, 
+$sql = "SELECT consultants.id, consultants.name, consultants.consultation_fee, specialities.speciality, clinics.name AS clinic_name, clinics.latitude, clinics.longitude, 
                AVG(reviews.score) AS average_score, COUNT(reviews.recommend) AS total_recommendations
         FROM consultants
         JOIN specialities ON consultants.speciality_id = specialities.id
