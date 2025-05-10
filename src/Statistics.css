@@ -266,3 +266,156 @@ section {
     background-color: #547AA5;
     border-radius: 4px;
 }
+
+/* consultant-profile.css */
+.consultant-profile-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2a2a3d; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    border-radius: 8px;
+    border: 1px solid #547AA5; /* Accent color */
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.consultant-profile-modal .profile-header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #3a3a4d;
+    padding-bottom: 10px;
+}
+
+.consultant-profile-modal .profile-header h2 {
+    margin-top: 0;
+    color: #e0e0e0;
+}
+
+.consultant-profile-modal .consultation-fee {
+    color: #a0a0a0;
+    font-weight: bold;
+}
+
+.consultant-profile-modal .profile-details {
+    margin-bottom: 15px;
+}
+
+.consultant-profile-modal .map-container {
+    margin: 15px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #3a3a4d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.consultant-profile-modal .location-map {
+    width: 100%;
+    height: 300px;
+    border: none;
+    display: block;
+}
+
+.consultant-profile-modal .profile-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.consultant-profile-modal .book-btn {
+    background-color: #547AA5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.consultant-profile-modal .close-btn {
+    background-color: #3a3a4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.consultant-profile-modal .book-btn:hover,
+.consultant-profile-modal .close-btn:hover {
+    transform: scale(1.05);
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+@media (max-width: 768px) {
+    .consultant-profile-modal .location-map {
+        height: 200px;
+    }
+}
+
+.charts-container {
+    margin-top: 20px;
+}
+
+.chart-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.chart-column {
+    flex: 1;
+    min-width: 250px;
+    background-color: #222230;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+    .chart-column {
+        flex: 100%;
+    }
+}
+
+.rating-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #547AA5;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating-badge .star {
+    font-size: 1.5rem;
+    margin-left: 4px;
+}
+
+.profile-header {
+    position: relative;
+}
