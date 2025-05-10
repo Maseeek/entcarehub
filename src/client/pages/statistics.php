@@ -47,7 +47,6 @@
             <div className={`dropdown-menu ${isVisible ? 'visible' : ''}`}>
                 <a href="search.php" className="dropdown-item">🔍 Search</a>
                 <a href="statistics.php" className="dropdown-item">📊 Statistics</a>
-                <a href="settings.php" className="dropdown-item">⚙️ Settings</a>
             </div>
         );
     }

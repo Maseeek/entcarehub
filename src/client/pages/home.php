@@ -48,7 +48,6 @@
             <div className={`dropdown-menu ${isVisible ? 'visible' : ''}`}>
                 <a href="search.php" className="dropdown-item">🔍 Search</a>
                 <a href="statistics.php" className="dropdown-item">📊 Statistics</a>
-                <a href="settings.php" className="dropdown-item">⚙️ Settings</a>
             </div>
         );
     }
@@ -84,7 +83,7 @@
 </div>
 <div class="info-section">
     <h1 class="tag">Welcome to ENT Care Hub</h1>
-    <!--    <p class="subtitle">Expert Care, Advanced Solutions</p>-->
+<!--        <p class="subtitle">Expert Care, Advanced Solutions</p>-->
 </div>
 
 <!-- Additional Sections -->
