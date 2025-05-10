@@ -158,6 +158,7 @@
                         <option>Total Recommendations</option>
                         <option>Distance</option>
                     </select>
+                    <button onClick={() => window.location.href = 'statistics.php'}>Who should i choose?</button>
                 </div>
                 <input
                     type="text"

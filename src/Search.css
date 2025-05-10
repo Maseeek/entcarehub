@@ -140,6 +140,22 @@
     /* Remove any opacity, visibility, or display properties that might be hiding it */
 }
 
+button{
+    background-color: #547AA5; /* Accent color */
+    padding:5px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #3a3a4d; /* Slightly darker on hover */
+    transform: scale(1.05);
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {
