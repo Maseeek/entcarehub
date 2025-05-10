@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Main.css">
     <link rel="stylesheet" href="ConsultantProfile.css">
     <script src="consultantProfile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div id="navbar-root"></div>

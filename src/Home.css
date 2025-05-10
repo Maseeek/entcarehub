@@ -228,8 +228,8 @@ body {
 }
 
 .review-text {
-    color: #d5d5d5;
-    font-size: 0.95rem;
+    color: #ededed;
+    font-size: 1.5rem;
     font-style: italic;
     margin-bottom: 1.5rem;
     height: 8rem;
@@ -250,7 +250,7 @@ body {
 
 .consultant-name {
     color: #d5d0d0;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
 }
 
 .carousel-instructions {

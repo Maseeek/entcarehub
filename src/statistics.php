@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Main.css">
     <link rel="stylesheet" href="Navbar.css">
     <link rel="stylesheet" href="Statistics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body>
