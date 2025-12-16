@@ -195,13 +195,14 @@ The application demonstrates advanced SQL techniques:
 ### Prerequisites
 
 - **Web Server**: Apache/Nginx with PHP 7.4+ support
-- **Database**: MySQL 5.7+ or MariaDB
+- **Database**: MySQL 5.7+ or MariaDB 10.2+
 - **Browser**: Modern browser with JavaScript enabled
 
 ### Installation Steps
 
 1. **Clone the repository**
    ```bash
+   # Replace with your actual repository URL
    git clone https://github.com/Maseeek/entcarehub.git
    cd entcarehub
    ```
